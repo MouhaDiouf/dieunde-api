@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 2020_12_17_175642) do
     t.string "nom"
     t.text "description"
     t.integer "prix"
-    t.string "categorie"
+    t.string "catégorie"
+    t.integer "user_id"
+    t.boolean "valide", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
