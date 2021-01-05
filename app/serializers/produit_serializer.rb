@@ -4,7 +4,7 @@ class ProduitSerializer < ActiveModel::Serializer
   belongs_to :user
 
   def similaires
-    Produit.where(" produits.nom LIKE 'smartphones' OR produits.catégorie LIKE 'smartphones'" )
+    Produit.where(" produits.catégorie LIKE catégorie" )
   end
   def image
    if object.image.attached?
