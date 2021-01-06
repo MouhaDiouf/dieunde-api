@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   resources :produits
 
-
+  post '/create_liker', to: 'produits#create_liker'
+  get '/favorites', to: 'users#favorites'
+  delete '/favorites', to: 'users#remove_favorite'
 end

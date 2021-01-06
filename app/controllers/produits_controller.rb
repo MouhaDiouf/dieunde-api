@@ -30,9 +30,26 @@ else
 end
 end
 
+def create_liker
+@product = Produit.find(params[:produit_id])
+@user = User.find(params[:user_id])
+@new_favorite = Favorite.create(user_id: params[:user_id], produit_id: params[:produit_id])
+@user_favorites = @user.favorite_products
+if @new_favorite.save
+  render json: @user_favorites
+
+else
+render json: {
+  status: 500,
+  errors: @new_favorite.error.full_messages
+}
+end
+
+end
+
 private
 def product_params
-  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image)
+  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id)
 end
 
 end
