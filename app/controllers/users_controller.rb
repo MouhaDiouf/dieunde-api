@@ -12,9 +12,18 @@ def remove_favorite
   @favorite = Favorite.find_by(user_id: params[:user_id], produit_id: params[:produit_id])
   if @favorite.destroy
     render json: @favorites
-    
+
   end
+
 end
+
+def get_created_products
+    @user = User.find(params[:id])
+    @created_products = @user.produits
+    render json: @created_products
+end
+
+
 
 private
 def user_arams

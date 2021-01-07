@@ -30,6 +30,20 @@ else
 end
 end
 
+def update
+  @product = Produit.find(params[:id])
+  @product.update(product_params)
+  if @product.save
+    render json: {
+      status: 'updated'
+    }
+  else
+    render json: {
+      status: 500,
+      errors: @product.error.full_messages
+    }
+  end
+end
 def create_liker
 @product = Produit.find(params[:produit_id])
 @user = User.find(params[:user_id])
@@ -47,9 +61,20 @@ end
 
 end
 
+def destroy
+  @product = Produit.find(params[:id])
+
+  if @product.destroy
+    render json: {
+      status: "destroyed",
+
+    }
+  end
+end
+
 private
 def product_params
-  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id)
+  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id, :id)
 end
 
 end

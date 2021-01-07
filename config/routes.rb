@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   post '/create_liker', to: 'produits#create_liker'
   get '/favorites', to: 'users#favorites'
+  get '/user/:id/products', to: 'users#get_created_products'
   delete '/favorites', to: 'users#remove_favorite'
+
 end
