@@ -1,8 +1,7 @@
 class ProduitsController < ApplicationController
   def index
-    render json: Produit.all
-  end
-
+    render json: Produit.all, cat: params[:catégorie]
+end
 def create
   @produit = Produit.new(product_params)
   if @produit.save
@@ -20,8 +19,9 @@ end
 
 def show
 @product = Produit.find(params[:id])
+@product_cat = @product.catégorie
 if @product
-render json: Produit.find(params[:id])
+render json: @product , info: {cat: @product_cat, id: params[:id]}
 else
   render json: {
     status: 500,
