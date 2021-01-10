@@ -1,6 +1,6 @@
 class ProduitSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :nom, :description, :catégorie, :prix, :image, :similaires
+  attributes :id, :nom, :description, :catégorie, :prix, :image, :similaires, :confirmed?
   belongs_to :user
 
   def similaires

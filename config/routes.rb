@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :produits
-
+  resources :users
   post '/create_liker', to: 'produits#create_liker'
   get '/favorites', to: 'users#favorites'
   get '/user/:id/products', to: 'users#get_created_products'
   delete '/favorites', to: 'users#remove_favorite'
-
+  get '/admin/products', to: 'produits#admin_index'
+  post '/admin/validate_product/:id', to: 'produits#validate_product'
 end

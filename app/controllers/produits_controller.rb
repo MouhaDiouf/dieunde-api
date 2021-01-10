@@ -1,6 +1,10 @@
 class ProduitsController < ApplicationController
   def index
-    render json: Produit.all, cat: params[:catégorie]
+    render json: Produit.all.where('confirmed': true)
+end
+
+def admin_index
+  render json: Produit.all
 end
 def create
   @produit = Produit.new(product_params)
@@ -23,9 +27,10 @@ def show
 if @product
 render json: @product , info: {cat: @product_cat, id: params[:id]}
 else
+
   render json: {
     status: 500,
-    errors: @product.error.full_messages
+    errors: @product.errors.full_messages
   }
 end
 end
@@ -33,6 +38,8 @@ end
 def update
   @product = Produit.find(params[:id])
   @product.update(product_params)
+  @product.confirmed = false
+
   if @product.save
     render json: {
       status: 'updated'
@@ -61,9 +68,18 @@ end
 
 end
 
+def validate_product
+  @product = Produit.find(params[:id])
+  @product.confirmed = !@product.confirmed
+  if @product.save
+    render json: {
+      status: 'validation updated'
+    }
+  end
+end
+
 def destroy
   @product = Produit.find(params[:id])
-
   if @product.destroy
     render json: {
       status: "destroyed",

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  def index
+    render json: User.all
+  end
 def favorites
   @user = User.find(params[:id])
   @favorites = @user.favorite_products
