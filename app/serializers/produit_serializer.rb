@@ -1,11 +1,15 @@
 class ProduitSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :nom, :description, :catégorie, :prix, :image, :similaires
+  attributes :id, :nom, :description, :catégorie, :prix, :image, :similaires, :confirmed?
   belongs_to :user
 
   def similaires
-    Produit.where(" produits.nom LIKE 'smartphones' OR produits.catégorie LIKE 'smartphones'" )
+    if(instance_options[:info])
+    Produit.where("catégorie": instance_options[:info][:cat]).where.not("id": instance_options[:info][:id])
+  else
+    []
   end
+end
   def image
    if object.image.attached?
      {
@@ -13,7 +17,6 @@ class ProduitSerializer < ActiveModel::Serializer
      }
    end
  end
-
 
 
 end
