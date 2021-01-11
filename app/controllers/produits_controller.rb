@@ -71,7 +71,12 @@ end
 def validate_product
   @product = Produit.find(params[:id])
   @product.confirmed = !@product.confirmed
+  @product_user = @product.user
   if @product.save
+    if @product.confirmed
+    ExampleMailer.sample_email(@product_user).deliver
+
+  end
     render json: {
       status: 'validation updated'
     }
