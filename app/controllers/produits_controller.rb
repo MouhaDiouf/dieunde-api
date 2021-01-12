@@ -9,6 +9,7 @@ end
 def create
   @produit = Produit.new(product_params)
   if @produit.save
+    UserMailer.product_creation(@produit).deliver
     render json: {
       status: 'created',
       produit: @produit
