@@ -74,7 +74,7 @@ def validate_product
   @product_user = @product.user
   if @product.save
     if @product.confirmed
-    ExampleMailer.sample_email(@product_user).deliver
+    UserMailer.product_approval(@product_user, @product).deliver
 
   end
     render json: {
