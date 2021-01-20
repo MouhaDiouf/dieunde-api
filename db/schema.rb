@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_212529) do
+ActiveRecord::Schema.define(version: 2021_01_20_133635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(version: 2021_01_08_212529) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "confirmed", default: false
+    t.string "marque", null: false
+    t.string "année"
+    t.string "kilométrage"
+    t.string "etat", default: "occasion"
+    t.string "selection", default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_212529) do
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "telephone"
+    t.string "telephone", null: false
     t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

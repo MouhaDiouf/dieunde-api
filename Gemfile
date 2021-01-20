@@ -14,6 +14,7 @@ gem 'puma', '~> 4.1'
 gem 'jwt'
 gem 'dotenv-rails'
 gem 'figaro'
+gem 'strong_password', '~> 0.0.8'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'

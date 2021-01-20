@@ -96,7 +96,7 @@ end
 
 private
 def product_params
-  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id, :id)
+  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id, :id, :marque)
 end
 
 end

@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :produits, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_products, through: :favorites, source: :produit, dependent: :destroy
+  validates :telephone, presence: true, uniqueness: true
+
+
+
   end
