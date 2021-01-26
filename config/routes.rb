@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   post '/create_liker', to: 'produits#create_liker'
   get '/favorites', to: 'users#favorites'
   get '/user/:id/products', to: 'users#get_created_products'
+  get '/show_produit_to_edit/:id', to: 'produits#show_to_edit'
   delete '/favorites', to: 'users#remove_favorite'
   get '/admin/products', to: 'produits#admin_index'
   post '/admin/validate_product/:id', to: 'produits#validate_product'
   post '/upload_image', to: 'produits#upload_image'
   delete '/delete_image', to: 'produits#delete_image'
-  post '/admin/add_to_selection', to: 'produits#add_to_selection'
+  post '/admin/add_to_selection', to: 'produits#add_remove_to_selection'
 end

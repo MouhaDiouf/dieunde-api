@@ -16,8 +16,8 @@ gem 'email_validator'
 gem 'jwt'
 gem 'dotenv-rails'
 # gem 'figaro'
-gem 'strong_password', '~> 0.0.8'
 
+gem 'jwt'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production

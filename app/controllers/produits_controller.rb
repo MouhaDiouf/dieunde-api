@@ -23,18 +23,37 @@ def create
   end
 end
 
-def show
-@product = Produit.find(params[:id])
-@product_cat = @product.catégorie
-if @product
-render json: @product , info: {cat: @product_cat, id: params[:id]}
+def show_to_edit
+@produit = Produit.find(params[:id])
+@user_that_requested = User.find(params[:userId])
+if(params[:isadmin])
+  render json: @produit
+elsif (@user_that_requested.produits.include?(@produit))
+  render json: @produit
 else
-
   render json: {
     status: 500,
-    errors: @product.errors.full_messages
   }
 end
+
+# @product_cat = @product.catégorie
+
+# render json: @product , info: {cat: @product_cat, id: params[:id]}
+# else
+#
+#   render json: {
+#     status: 500,
+#     errors: @product.errors.full_messages
+#   }
+# end
+end
+
+
+def show
+  @produit = Produit.find(params[:id])
+  @product_cat = @produit.catégorie
+  render json: @produit
+   # info: {cat: '', id: params[:id]}
 end
 
 def update
@@ -106,9 +125,10 @@ def delete_image
   render json: result
 end
 
-def add_to_selection
+def add_remove_to_selection
   @produit = Produit.find(params[:id])
-  @produit.inSelection = true
+  @produit.inSelection = !@produit.inSelection
+  @produit.save
   render json: {
     status: 'added'
   }
@@ -124,7 +144,7 @@ end
 
 private
 def product_params
-  params.permit(:nom, :description, :prix, :catégorie, :user_id,  :produit_id, :id, :marque, :public_id, :images, :kilométrage, :année, :etat)
+  params.permit(:nom, :description, :prix, :catégorie, :user_id,  :produit_id, :id, :marque, :public_id, :images, :kilométrage, :année, :etat, :isadmin, :userId)
 end
 
 end

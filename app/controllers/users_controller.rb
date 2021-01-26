@@ -19,6 +19,15 @@ def remove_favorite
 
 end
 
+def show
+  @user = User.find(params[:id])
+  if !@user.isadmin
+  render json: User.find(params[:id])
+else
+  render json: {} 
+end
+end
+
 def get_created_products
     @user = User.find(params[:id])
     @created_products = @user.produits
