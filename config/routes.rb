@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   delete '/favorites', to: 'users#remove_favorite'
   get '/admin/products', to: 'produits#admin_index'
   post '/admin/validate_product/:id', to: 'produits#validate_product'
+  post '/upload_image', to: 'produits#upload_image'
+  delete '/delete_image', to: 'produits#delete_image'
+  post '/admin/add_to_selection/:id', to: 'produits#add_to_selection'
 end

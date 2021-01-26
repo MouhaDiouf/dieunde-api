@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
-  default from: 'throwawaymou@gmail.com'
+  default from: ENV['GMAIL_USERNAME']
   def product_approval(user, product)
     @user = user
     @product = product
-    mail(to: @user.email, subject: 'Produit accepté!')
+    mail(to: @user.email, subject: 'Produit accepté')
   end
   def product_creation(product)
     @product = product

@@ -8,6 +8,7 @@ def admin_index
 end
 def create
   @produit = Produit.new(product_params)
+
   if @produit.save
     UserMailer.product_creation(@produit).deliver
     render json: {
@@ -94,9 +95,25 @@ def destroy
   end
 end
 
+def upload_image
+        image = Cloudinary::Uploader.upload(params[:image])
+        render json: image
+end
+
+
+def delete_image
+  result = Cloudinary::Uploader.destroy(params[:public_id])
+  render json: result
+end
+
+def add_to_selection
+  @produit = Produit.find(params[:id])
+  
+end
+
 private
 def product_params
-  params.permit(:nom, :description, :prix, :catégorie, :user_id, :image, :produit_id, :id, :marque)
+  params.permit(:nom, :description, :prix, :catégorie, :user_id,  :produit_id, :id, :marque, :public_id, :images, :kilométrage, :année, :etat)
 end
 
 end
