@@ -108,7 +108,18 @@ end
 
 def add_to_selection
   @produit = Produit.find(params[:id])
-  
+  @produit.inSelection = true
+  render json: {
+    status: 'added'
+  }
+end
+
+def remove_from_selection
+  @produit = Produit.find(params[:id])
+  @produit.inSelection = false
+  render json: {
+    status: 'removed from selection'
+  }
 end
 
 private
