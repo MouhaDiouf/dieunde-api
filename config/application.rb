@@ -34,13 +34,13 @@ module DieundeApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
      config.i18n.default_locale = :fr
-     config.action_dispatch.default_headers = {
-           'Access-Control-Allow-Origin' => 'https://dakarvoitures.netlify.app',
-           'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-         }
+     # config.action_dispatch.default_headers = {
+     #       'Access-Control-Allow-Origin' => 'https://dakarvoitures.netlify.app',
+     #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+     #     }
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
        allow do
-         origins 'https://dakarvoitures.netlify.app', 'http://localhost:3000'
+         origins '*'
          resource '*', headers: :any, methods: %i[get post put patch delete options head],
                        credentials: true
        end
