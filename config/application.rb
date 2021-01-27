@@ -39,10 +39,11 @@ module DieundeApi
      #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
      #     }
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-       allow do
-         origins '*'
-         resource '*', headers: :any, methods: %i[get post put patch delete options head],
-                       credentials: true
+       config.middleware.insert_before 0, Rack::Cors do
+         allow do
+           origins 'localhost:3000', /https*:\/\/.*?dakarvoitures\.com/
+           resource '*', :headers => :any, :methods => :any
+         end
        end
      end
 
