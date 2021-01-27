@@ -35,12 +35,14 @@ module DieundeApi
     config.api_only = true
      config.i18n.default_locale = :fr
 
+     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+       allow do
+         origins 'https://dakarvoitures.netlify.app', 'http://localhost:3000'
+         resource '*', headers: :any, methods: %i[get post put patch delete options head],
+                       credentials: true
+       end
+     end
 
-    config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
+
   end
 end
