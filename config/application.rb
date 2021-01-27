@@ -41,7 +41,7 @@ module DieundeApi
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
        config.middleware.insert_before 0, Rack::Cors do
          allow do
-           origins 'localhost:3000', /https*:\/\/.*?dakarvoitures\.com/
+           origins 'localhost:3000', /https*:\/\/.*?netlify\.app/
            resource '*', :headers => :any, :methods => :any
          end
        end
