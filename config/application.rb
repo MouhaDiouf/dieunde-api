@@ -39,11 +39,7 @@ module DieundeApi
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
-        resource '*',
-        headers: :any,
-        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-        methods: [:get, :post, :options, :delete, :put, :patch], credentials: true
-
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
   end
