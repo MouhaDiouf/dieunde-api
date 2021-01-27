@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.5.1'
 gem 'devise_token_auth'
- gem 'rack-cors'
  gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
@@ -13,7 +12,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'cloudinary'
 gem 'puma', '~> 4.1'
 gem 'email_validator'
-gem 'jwt'
 gem 'dotenv-rails'
 # gem 'figaro'
 
