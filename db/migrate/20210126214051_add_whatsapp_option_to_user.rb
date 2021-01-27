@@ -1,5 +1,5 @@
 class AddWhatsappOptionToUser < ActiveRecord::Migration[6.0]
   def change
-    add_column :users, :whatsapp, :boolean, default: false
+    add_column :users, :whatsapp, :boolean, default: true
   end
 end
