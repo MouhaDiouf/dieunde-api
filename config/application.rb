@@ -35,14 +35,10 @@ module DieundeApi
     config.api_only = true
      config.i18n.default_locale = :fr
 
-         config.load_defaults 5.2
-         config.assets.initialize_on_precompile = false
-         config.assets.initialize_on_precompile = false
-
-
+      
     config.middleware.use Rack::Cors do
       allow do
-        origins 'https://dakarvoitures.netlify.app',  'http://localhost:3000'
+        origins 'https://dakarvoitures.netlify.app', 'http://localhost:3000'
         resource '*',
         headers: :any,
         expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
