@@ -43,15 +43,15 @@ module DieundeApi
      #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
      #     }
 
-
-     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-
-         allow do
-           origins '*'
-           resource '*', :headers => :any, :methods => :any
-         end
-       
-     end
+     # 
+     # config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+     #
+     #     allow do
+     #       origins '*'
+     #       resource '*', :headers => :any, :methods => :any
+     #     end
+     #
+     # end
 
 
   end
