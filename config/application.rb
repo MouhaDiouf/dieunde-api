@@ -1,3 +1,6 @@
+before_action :cors_preflight_check
+after_action :cors_set_access_control_headers
+
 require_relative 'boot'
 
 require "rails"
@@ -33,11 +36,28 @@ module DieundeApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.hosts.clear
      config.i18n.default_locale = :fr
      # config.action_dispatch.default_headers = {
      #       'Access-Control-Allow-Origin' => 'https://dakarvoitures.netlify.app',
      #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
      #     }
+
+     def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
+
+def cors_preflight_check
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    render :text => '', :content_type => 'text/plain'
+end
+
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
        config.middleware.insert_before 0, Rack::Cors do
          allow do
