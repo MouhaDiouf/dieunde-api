@@ -1,4 +1,4 @@
-before_action :cors_preflight_check
+# before_action :cors_preflight_check
 # after_action :cors_set_access_control_headers
 
 require_relative 'boot'
@@ -43,20 +43,6 @@ module DieundeApi
      #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
      #     }
 
-     def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  end
-
-def cors_preflight_check
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    render :text => '', :content_type => 'text/plain'
-end
 
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
        config.middleware.insert_before 0, Rack::Cors do
