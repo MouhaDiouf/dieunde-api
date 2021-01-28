@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :produits
   resources :users
+  root 'produits#index'
   post '/create_liker', to: 'produits#create_liker'
   get '/favorites', to: 'users#favorites'
   get '/user/:id/products', to: 'users#get_created_products'
