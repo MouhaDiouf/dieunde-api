@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '3.0.0'
 gem 'devise_token_auth'
  gem 'rack-cors'
  gem 'active_model_serializers'
@@ -15,7 +15,7 @@ gem 'puma', '~> 4.1'
 gem 'email_validator'
 gem 'jwt'
 gem 'dotenv-rails'
-# gem 'figaro'
+gem 'figaro'
 
 gem 'jwt'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
