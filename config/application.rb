@@ -39,7 +39,7 @@ module DieundeApi
     config.hosts.clear
      config.i18n.default_locale = :fr
      # config.action_dispatch.default_headers = {
-     #       'Access-Control-Allow-Origin' => 'https://dakarvoitures.netlify.app',
+     #       'Access-Control-Allow-Origin' => 'https://dakarvoitures.netlify.',
      #       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
      #     }
 
@@ -47,7 +47,10 @@ module DieundeApi
      config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
          allow do
            origins '*'
-           resource '*', :headers => :any, :methods => :any
+           resource '*',
+            headers: :any,
+            expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+             methods: %i[get post put patch delete options head]
          end
 
      end
